@@ -6,7 +6,7 @@ var currentSort = 0;
 var currentOption = 0;
 var currentPage = 1;
 var pageCount;
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 15;
 
 function onLoad(){
     loadEntries(0);
@@ -274,6 +274,7 @@ function searchEntries(searchQuery){
 }
 
 function clearSearch(){
+    $("#searchField").val("");
     currentList = backupList;
     recalculatePageCount();
     reorganize(currentOption);
