@@ -22,6 +22,8 @@ public class ImageFromDatabaseTranslator {
     private String dbUser;
     @Value("${db.password}")
     private String dbPassword;
+    @Value("${db.database}")
+    private String dbDatabase;
 
     //private final String URL = "jdbc:postgresql://"+dbHost+"/ancient_texts_test";
     private final String TEXT_DETAILS_STATEMENT = "SELECT * FROM ancient_texts.\"PICTURES\" WHERE id_pk=?";
@@ -31,7 +33,7 @@ public class ImageFromDatabaseTranslator {
     }
 
     public byte[] fetchTabletImage(Long id) throws Exception {
-        final String URL = "jdbc:postgresql://"+dbHost+"/ancient_texts_test";
+        final String URL = "jdbc:postgresql://"+dbHost+"/"+dbDatabase;
 
         props = new Properties();
         props.setProperty("user", dbUser);

@@ -15,6 +15,8 @@ public class TextsDatabaseTranslator {
 
     @Value("${db.host}")
     private String dbHost;
+    @Value("${db.database}")
+    private String dbDatabase;
     @Value("${db.user}")
     private String dbUser;
     @Value("${db.password}")
@@ -28,7 +30,7 @@ public class TextsDatabaseTranslator {
     }
 
     public List<ListItemEntity> fetchAllEntries() throws Exception {
-        final String URL = "jdbc:postgresql://"+dbHost+"/ancient_texts_test";
+        final String URL = "jdbc:postgresql://"+dbHost+"/"+dbDatabase;
         props = new Properties();
         props.setProperty("user",dbUser);
         props.setProperty("password",dbPassword);
@@ -50,7 +52,7 @@ public class TextsDatabaseTranslator {
     }
 
     public TextItemEntity fetchTextDetails(Long id) throws Exception {
-        final String URL = "jdbc:postgresql://"+dbHost+"/ancient_texts_test";
+        final String URL = "jdbc:postgresql://"+dbHost+"/"+dbDatabase;
 
         TextItemEntity entry = new TextItemEntity();
         try (Connection connection = DriverManager.getConnection(URL, props);){
