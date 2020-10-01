@@ -10,14 +10,6 @@ const PAGE_SIZE = 20;
 
 function onLoad(){
     loadEntries(0);
-    $("#searchField").on('keypress',function(e) {
-        if(e.which == 13) {
-            if($("#searchField").val().length > 2){
-                searchEntries($("#searchField").val());
-            }
-        }
-    });
-
 }
 
 function loadEntries(option){
@@ -123,6 +115,13 @@ function resetCurrentSort(){
 }
 
 function displayList(){
+    $("#searchField").on('keypress',function(e) {
+        if(e.which == 13) {
+            if($("#searchField").val().length > 2){
+                searchEntries($("#searchField").val());
+            }
+        }
+    });
     $.ajax(
       { url: "templates/text table template.html",
         success: function(listTable){

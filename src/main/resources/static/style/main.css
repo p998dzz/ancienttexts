@@ -101,6 +101,7 @@ table{
     margin-left: -300px;
     box-shadow: 0 0 50px 100px #fff;
     width: 600px;
-    height: 3000px;
+    height: 100%;
     background-color: white;
+    overflow: hidden;
 }
