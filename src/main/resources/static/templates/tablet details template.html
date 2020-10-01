@@ -1,0 +1,20 @@
+<div class='entryPage' style="text-align: left;">
+    <h3 style="text-align: center;">@paramTitle</h3>
+    <h4>Description</h4>
+    <p>@paramDescription</p>
+    <h4>Source Interpretation</h4>
+    <p>@paramTranslation</p>
+    <h4>Location</h4>
+    <p>@paramLocation</p>
+    <h4>Source</h4>
+    <p>@paramSource</p>
+    <h4>Date of Upload</h4>
+    <p>@paramDate</p>
+    <img class='clickableImage' src='/image/original/@paramImageId' alt='Image loading...'
+         onclick="window.open('image/original/@paramImageId', '_blank');">
+    <p style="text-align: center;">(click on the image to open in another window)</p>
+</div><br/>
+<span class="glyphicon glyphicon-arrow-left clickable-cursor" aria-hidden="true" onclick="restorePreviousState()"></span>
+<br/><br/>
+<p><a class="clickable-cursor" onclick="loadAbout()">About project</a></p>
+<br/>

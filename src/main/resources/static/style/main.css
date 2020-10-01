@@ -1,0 +1,93 @@
+body{
+    text-align: center;
+    background-color: #ffd88a;
+}
+
+.listEntry:hover {
+  background-color: lightgrey;
+}
+
+.listEntry{
+    text-align: left;
+    width: 600px;
+    background-color: white;
+    cursor: pointer;
+    height: 30px;
+}
+
+td{
+    background-color: none;
+}
+
+table{
+    border-width: 0px;
+    border-spacing: 0px;
+    border: none;
+}
+
+#toolbar{
+    z-index: -999;
+    width: 600px;
+    left: 50%;
+    margin-left: -300px;
+    position: relative;
+}
+
+#content{
+    width: 600px;
+    left: 50%;
+    margin-left: -300px;
+    position: relative;
+}
+
+.entryPage{
+    width: 600px;
+}
+
+.clickableImage{
+    cursor: pointer;
+    max-width: 600px;
+    max-height: 600px;
+}
+
+.leftSide{
+    height: 100%;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    -webkit-mask-image: -webkit-gradient(linear, left top, right top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+}
+
+.rightSide{
+    height: 100%;
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    -webkit-mask-image: -webkit-gradient(linear, right top, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+}
+
+.odd{
+    background-color: #EEEEEE;
+}
+
+#searchField{
+    width: 500px;
+}
+
+#clearSearchButton{
+    width: 100px;
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clickable-cursor{
+    cursor: pointer;
+}
+
+.glyphicon {
+    font-size: 30px;
+}
