@@ -11,6 +11,7 @@ public class TextDetailsResponse {
     private Boolean interpreted;
     private String dateAdded;
     private String sourceLink;
+    private String datedAt;
 
     public Long getId() {
         return id;
@@ -90,5 +91,13 @@ public class TextDetailsResponse {
 
     public void setSourceLink(String sourceLink) {
         this.sourceLink = sourceLink;
+    }
+
+    public String getDatedAt() {
+        return datedAt;
+    }
+
+    public void setDatedAt(String datedAt) {
+        this.datedAt = datedAt;
     }
 }

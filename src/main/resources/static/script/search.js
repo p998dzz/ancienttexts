@@ -51,6 +51,7 @@ function showTextDetails(id){
                    result2 = result2.replace("@paramDate",result.dateAdded);
                    result2 = result2.replace("@paramTranslation",result.interpreted === true ? result.translation : "N/A");
                    result2 = result2.replaceAll("@paramLink",result.sourceLink !== null ? result.sourceLink : "N/A");
+                   result2 = result2.replace("@paramCreateDate",result.datedAt);
                    $("#content").html(result2);
                  },
                  error: function(result2){
