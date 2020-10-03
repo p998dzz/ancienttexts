@@ -46,11 +46,10 @@ function showTextDetails(id){
                    result2 = result2.replace("@paramTitle",result.title);
                    result2 = result2.replace("@paramDescription",result.description);
                    result2 = result2.replace("@paramLocation",result.location);
-                   result2 = result2.replace("@paramSource",result.tabletSource);
+                   result2 = result2.replace("@paramSource",result.tabletSource + (result.sourceLink !== null ? ("<br/><a href='"+result.sourceLink+"'>"+result.sourceLink+"</a>") : ""));
                    result2 = result2.replaceAll("@paramImageId",result.originalPictureId);
                    result2 = result2.replace("@paramDate",result.dateAdded);
                    result2 = result2.replace("@paramTranslation",result.interpreted === true ? result.translation : "N/A");
-                   result2 = result2.replaceAll("@paramLink",result.sourceLink !== null ? result.sourceLink : "N/A");
                    result2 = result2.replace("@paramCreateDate",result.datedAt);
                    $("#content").html(result2);
                  },
