@@ -69,6 +69,7 @@ public class TextsDatabaseTranslator {
                 entry.setOriginalPictureId(rs.getLong(5));
                 entry.setTranslation(rs.getString(6));
                 entry.setTabletSource(rs.getString(7));
+                entry.setSourceLink(rs.getString(10));
                 break;
             }
         }

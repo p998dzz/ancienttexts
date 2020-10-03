@@ -12,6 +12,7 @@ public class TextItemEntity {
     private String tabletSource;
     private Boolean interpreted;
     private Date dateAdded;
+    private String sourceLink;
 
     public Long getId() {
         return id;
@@ -83,5 +84,13 @@ public class TextItemEntity {
 
     public void setDateAdded(Date dateAdded) {
         this.dateAdded = dateAdded;
+    }
+
+    public String getSourceLink() {
+        return sourceLink;
+    }
+
+    public void setSourceLink(String sourceLink) {
+        this.sourceLink = sourceLink;
     }
 }
