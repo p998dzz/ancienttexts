@@ -42,6 +42,7 @@ public class TypeConvertors {
         response.setTitle(srcEntity.getTitle());
         response.setTranslation(srcEntity.getTranslation());
         response.setSourceLink(srcEntity.getSourceLink());
+        response.setDatedAt(srcEntity.getDatedAt());
         return response;
     }
 }
