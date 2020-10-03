@@ -41,6 +41,7 @@ public class TypeConvertors {
         response.setOriginalPictureId(srcEntity.getOriginalPictureId());
         response.setTitle(srcEntity.getTitle());
         response.setTranslation(srcEntity.getTranslation());
+        response.setSourceLink(srcEntity.getSourceLink());
         return response;
     }
 }

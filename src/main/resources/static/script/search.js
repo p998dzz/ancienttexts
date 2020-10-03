@@ -50,7 +50,7 @@ function showTextDetails(id){
                    result2 = result2.replaceAll("@paramImageId",result.originalPictureId);
                    result2 = result2.replace("@paramDate",result.dateAdded);
                    result2 = result2.replace("@paramTranslation",result.interpreted === true ? result.translation : "N/A");
-                   result2 = result2.replace("@paramLink",result.sourceLink === true ? result.sourceLink : "N/A");
+                   result2 = result2.replaceAll("@paramLink",result.sourceLink !== null ? result.sourceLink : "N/A");
                    $("#content").html(result2);
                  },
                  error: function(result2){

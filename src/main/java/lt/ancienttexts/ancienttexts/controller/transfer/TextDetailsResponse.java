@@ -10,6 +10,7 @@ public class TextDetailsResponse {
     private String tabletSource;
     private Boolean interpreted;
     private String dateAdded;
+    private String sourceLink;
 
     public Long getId() {
         return id;
@@ -81,5 +82,13 @@ public class TextDetailsResponse {
 
     public void setDateAdded(String dateAdded) {
         this.dateAdded = dateAdded;
+    }
+
+    public String getSourceLink() {
+        return sourceLink;
+    }
+
+    public void setSourceLink(String sourceLink) {
+        this.sourceLink = sourceLink;
     }
 }
