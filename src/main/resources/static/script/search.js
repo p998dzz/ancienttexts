@@ -20,6 +20,7 @@ function loadEntries(option){
         backupList = currentList;
         recalculatePageCount();
         reorganize(option);
+        $("#mainDescription").val("Search the library for linear B texts from all over the world. Collection is constantly updated. Currently contains "+result.entries.length+" entries.");
       },
       error: function(result){
         $("#result").html("There was an error");
