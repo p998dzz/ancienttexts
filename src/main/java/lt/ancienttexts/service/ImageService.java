@@ -1,5 +1,6 @@
 package lt.ancienttexts.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lt.ancienttexts.controller.exceptions.InternalServerErrorException;
 import lt.ancienttexts.controller.exceptions.ResourceNotFoundException;
@@ -10,13 +11,10 @@ import java.util.NoSuchElementException;
 
 @Slf4j
 @Component("ImageService")
+@RequiredArgsConstructor
 public class ImageService {
 
     ImageAdapter imageAdapter;
-
-    public ImageService(ImageAdapter imageAdapter) {
-        this.imageAdapter = imageAdapter;
-    }
 
     public byte[] fetchOriginalImage(Long id) {
         try {

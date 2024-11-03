@@ -3,19 +3,19 @@ package lt.ancienttexts.service.util;
 import lt.ancienttexts.domain.ListItem;
 import lt.ancienttexts.service.entities.ListItemEntity;
 import lt.ancienttexts.service.entities.TextItemEntity;
-import lt.ancienttexts.domain.TextDetailsResponse;
+import lt.ancienttexts.domain.TabletDetailsResponse;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TypeConvertors {
+public class DbEntityConverter implements EntityConverter {
 
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
-
-    public static List<ListItem> listItemEntityToTransfer(List<ListItemEntity> entitiesToConvert){
+    @Override
+    public List<ListItem> listItemEntityToTransfer(List<ListItemEntity> entitiesToConvert){
         List<ListItem> items = new ArrayList<>();
         for(ListItemEntity srcEntity : entitiesToConvert){
             ListItem item = new ListItem();
@@ -30,8 +30,9 @@ public class TypeConvertors {
         return  items;
     }
 
-    public static TextDetailsResponse listItemEntityToTransfer(TextItemEntity srcEntity){
-        TextDetailsResponse response = new TextDetailsResponse();
+    @Override
+    public TabletDetailsResponse listItemEntityToTransfer(TextItemEntity srcEntity){
+        TabletDetailsResponse response = new TabletDetailsResponse();
         response.setDateAdded(DATE_FORMAT.format(srcEntity.getDateAdded()));
         response.setTabletSource(srcEntity.getTabletSource());
         response.setInterpreted(srcEntity.getInterpreted());

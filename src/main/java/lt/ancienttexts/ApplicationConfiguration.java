@@ -4,12 +4,16 @@ import lt.ancienttexts.adapter.db.ImageDbAdapter;
 import lt.ancienttexts.adapter.db.TabletsDbAdapter;
 import lt.ancienttexts.adapter.ImageAdapter;
 import lt.ancienttexts.adapter.TabletAdapter;
+import lt.ancienttexts.service.util.DbEntityConverter;
+import lt.ancienttexts.service.util.EntityConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.support.lob.DefaultLobHandler;
+
+import javax.swing.text.html.parser.Entity;
 
 @Configuration
 public class ApplicationConfiguration {
@@ -38,5 +42,10 @@ public class ApplicationConfiguration {
     @Bean
     public TabletAdapter tabletAdapter(NamedParameterJdbcTemplate jdbcTemplate) {
         return new TabletsDbAdapter(jdbcTemplate);
+    }
+
+    @Bean
+    public EntityConverter entityConverter() {
+        return new DbEntityConverter();
     }
 }

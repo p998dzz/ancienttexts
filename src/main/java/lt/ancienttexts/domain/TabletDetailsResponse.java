@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TextDetailsResponse {
+public class TabletDetailsResponse {
     private Long id;
     private String title;
     private String description;

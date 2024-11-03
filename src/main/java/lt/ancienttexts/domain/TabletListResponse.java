@@ -5,11 +5,11 @@ import lombok.Getter;
 import java.util.List;
 
 @Getter
-public class TextListResponse {
+public class TabletListResponse {
     private List<ListItem> entries;
     private Integer numberOfEntries;
 
-    public TextListResponse(List<ListItem> entries) {
+    public TabletListResponse(List<ListItem> entries) {
         this.entries = entries;
         this.numberOfEntries = entries.size();
     }
