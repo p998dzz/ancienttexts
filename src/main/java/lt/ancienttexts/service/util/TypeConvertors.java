@@ -1,9 +1,9 @@
-package lt.ancienttexts.ancienttexts.service.util;
+package lt.ancienttexts.service.util;
 
-import lt.ancienttexts.ancienttexts.controller.transfer.ListItem;
-import lt.ancienttexts.ancienttexts.controller.transfer.TextDetailsResponse;
-import lt.ancienttexts.ancienttexts.service.entities.ListItemEntity;
-import lt.ancienttexts.ancienttexts.service.entities.TextItemEntity;
+import lt.ancienttexts.domain.ListItem;
+import lt.ancienttexts.service.entities.ListItemEntity;
+import lt.ancienttexts.service.entities.TextItemEntity;
+import lt.ancienttexts.domain.TextDetailsResponse;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,7 +20,7 @@ public class TypeConvertors {
         for(ListItemEntity srcEntity : entitiesToConvert){
             ListItem item = new ListItem();
             item.setId(srcEntity.getId());
-            item.setInterpreted(srcEntity.isInterpreted());
+            item.setInterpreted(srcEntity.getInterpreted());
             item.setLocation(srcEntity.getLocation());
             item.setTitle(srcEntity.getTitle());
             String strDate = DATE_FORMAT.format(srcEntity.getDateAdded());
@@ -34,7 +34,7 @@ public class TypeConvertors {
         TextDetailsResponse response = new TextDetailsResponse();
         response.setDateAdded(DATE_FORMAT.format(srcEntity.getDateAdded()));
         response.setTabletSource(srcEntity.getTabletSource());
-        response.setInterpreted(srcEntity.isInterpreted());
+        response.setInterpreted(srcEntity.getInterpreted());
         response.setDescription(srcEntity.getDescription());
         response.setId(srcEntity.getId());
         response.setLocation(srcEntity.getLocation());

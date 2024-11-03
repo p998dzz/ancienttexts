@@ -1,4 +1,4 @@
-package lt.ancienttexts.ancienttexts.service.util;
+package lt.ancienttexts.service.util;
 
 public enum SortingType {
     NAME,

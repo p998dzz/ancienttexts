@@ -1,6 +1,6 @@
-package lt.ancienttexts.ancienttexts.service.util;
+package lt.ancienttexts.service.util;
 
-import lt.ancienttexts.ancienttexts.controller.transfer.ListItem;
+import lt.ancienttexts.domain.ListItem;
 
 import java.util.Comparator;
 

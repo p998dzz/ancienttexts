@@ -1,6 +1,6 @@
-package lt.ancienttexts.ancienttexts.controller;
+package lt.ancienttexts.controller.webapp;
 
-import lt.ancienttexts.ancienttexts.service.ImageService;
+import lt.ancienttexts.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
