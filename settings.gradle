@@ -1,9 +1,25 @@
 pluginManagement {
 	repositories {
-		maven { url 'https://repo.spring.io/milestone' }
-		maven { url 'https://repo.spring.io/snapshot' }
+		// Adding Spring milestone repository for milestone versions
+		maven {
+			url 'https://repo.spring.io/milestone'
+			metadataSources {
+				mavenPom()
+				artifact()
+			}
+		}
+		// Adding Spring snapshot repository for snapshot versions
+		maven {
+			url 'https://repo.spring.io/snapshot'
+			metadataSources {
+				mavenPom()
+				artifact()
+			}
+		}
+		// Standard Gradle Plugin Portal for other plugins
 		gradlePluginPortal()
 	}
+	// Resolving Spring Boot plugin via module specification
 	resolutionStrategy {
 		eachPlugin {
 			if (requested.id.id == 'org.springframework.boot') {
@@ -12,4 +28,6 @@ pluginManagement {
 		}
 	}
 }
+
+// Setting the root project name
 rootProject.name = 'ancienttexts'
