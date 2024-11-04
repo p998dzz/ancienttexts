@@ -1,13 +1,13 @@
 package lt.ancienttexts.controller.webapp;
 
-import lt.ancienttexts.domain.TabletDetailsResponse;
+import lt.ancienttexts.domain.TabletDetails;
 import lt.ancienttexts.domain.TabletListResponse;
 import lt.ancienttexts.service.TabletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("text")
+@RequestMapping("tablet")
 public class TextsController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class TextsController {
 
     @GetMapping(value = "/item/{id}", produces = "application/json")
     public @ResponseBody
-    TabletDetailsResponse fetchTextItem(@PathVariable Long id) {
-        return tabletService.fetchTextDetails(id);
+    TabletDetails fetchTextItem(@PathVariable Long id) {
+        return tabletService.fetchTabletDetails(id);
     }
 }

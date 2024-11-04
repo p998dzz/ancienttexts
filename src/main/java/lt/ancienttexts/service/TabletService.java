@@ -2,18 +2,18 @@ package lt.ancienttexts.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import lt.ancienttexts.adapter.ImageAdapter;
 import lt.ancienttexts.adapter.TabletAdapter;
-import lt.ancienttexts.controller.exceptions.InternalServerErrorException;
-import lt.ancienttexts.controller.exceptions.ResourceNotFoundException;
-import lt.ancienttexts.domain.TabletDetailsResponse;
+import lt.ancienttexts.domain.TabletDetails;
 import lt.ancienttexts.domain.TabletListResponse;
+import lt.ancienttexts.domain.TabletRequest;
 import lt.ancienttexts.service.entities.ListItemEntity;
-import lt.ancienttexts.service.entities.TextItemEntity;
+import lt.ancienttexts.service.entities.TabletEntity;
 import lt.ancienttexts.service.util.EntityConverter;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Slf4j
 @Component("TabletService")
@@ -21,38 +21,73 @@ import java.util.NoSuchElementException;
 public class TabletService {
 
     TabletAdapter tabletAdapter;
+    ImageAdapter imageAdapter;
     EntityConverter entityConverter;
 
     public TabletListResponse fetchAllEntries(){
-        try {
-            List<ListItemEntity> entriesEntities = tabletAdapter.fetchAll();
-            return new TabletListResponse(entityConverter.listItemEntityToTransfer(entriesEntities));
-        } catch (Exception ex) {
-            log.error(ex.getMessage(), ex);
-            throw new InternalServerErrorException("There was an internal error");
-        }
+        List<ListItemEntity> entriesEntities = tabletAdapter.fetchAll();
+        return new TabletListResponse(entityConverter.listItemEntityToTransfer(entriesEntities));
     }
 
     public TabletListResponse searchEntries(String searchPhrase){
-        try {
-            List<ListItemEntity> entriesEntities = tabletAdapter.fetchEntries(searchPhrase);
-            return new TabletListResponse(entityConverter.listItemEntityToTransfer(entriesEntities));
-        } catch (Exception ex) {
-            log.error(ex.getMessage(), ex);
-            throw new InternalServerErrorException("There was an internal error");
+        if (Strings.isBlank(searchPhrase)) {
+            throw new IllegalArgumentException("search phrase not provided");
         }
+        List<ListItemEntity> entriesEntities = tabletAdapter.fetchEntries(searchPhrase);
+        return new TabletListResponse(entityConverter.listItemEntityToTransfer(entriesEntities));
     }
 
-    public TabletDetailsResponse fetchTextDetails(Long id) {
-        try {
-            TextItemEntity entry = tabletAdapter.fetchDetails(id);
-            return entityConverter.listItemEntityToTransfer(entry);
-        } catch (NoSuchElementException e) {
-            log.error(e.getMessage(), e);
-            throw new ResourceNotFoundException(String.format("Tablet not available for id=%d", id));
-        } catch (Exception ex) {
-            log.error(ex.getMessage(), ex);
-            throw new InternalServerErrorException("There was an internal error");
+    public TabletDetails fetchTabletDetails(Long id){
+        if (id == null) {
+            throw new IllegalArgumentException("id must not be null");
         }
+        TabletEntity entry = tabletAdapter.fetchDetails(id);
+        return entityConverter.listItemEntityToTransfer(entry);
+
+    }
+
+    public void updateTabletDetails(Long id, TabletRequest tabletRequest) {
+        if (tabletRequest.image() != null) {
+            var existingTablet = tabletAdapter.fetchDetails(id);
+            updateImage(existingTablet.getImageId(), tabletRequest.image());
+        }
+        var tabletDetails = TabletDetails.from(id, tabletRequest, null);
+        tabletAdapter.updateTablet(tabletDetails);
+    }
+
+    public void createTabletDetails(TabletRequest tabletRequest) {
+        if (tabletRequest.image() == null) {
+            throw new IllegalArgumentException("Missing tablet image");
+        }
+        var imageId = createImage(tabletRequest.image());
+        var tabletDetails = TabletDetails.from(null, tabletRequest, imageId);
+        tabletAdapter.createTablet(tabletDetails);
+    }
+
+    public void deleteTabletDetails(Long id) {
+        var imageId = tabletAdapter.fetchDetails(id).getImageId();
+        tabletAdapter.deleteTablet(id);
+        deleteImage(imageId);
+    }
+
+    private long createImage(byte[] blob) {
+        if (blob == null || blob.length == 0) {
+            throw new IllegalArgumentException("blob must be provided");
+        }
+        return imageAdapter.createTabletImage(blob);
+    }
+
+    private void updateImage(Long id, byte[] blob) {
+        if (id == null) {
+            throw new IllegalArgumentException("id must not be null");
+        }
+        imageAdapter.updateTabletImage(id, blob);
+    }
+
+    private void deleteImage(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("id must not be null");
+        }
+        imageAdapter.deleteTabletImage(id);
     }
 }

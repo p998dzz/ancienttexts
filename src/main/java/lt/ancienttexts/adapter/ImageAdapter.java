@@ -1,7 +1,8 @@
 package lt.ancienttexts.adapter;
 
-import java.util.NoSuchElementException;
-
 public interface ImageAdapter {
-    byte[] fetchTabletImage(Long id) throws NoSuchElementException;
+    byte[] fetchTabletImage(Long id);
+    long createTabletImage(byte[] blob);
+    void updateTabletImage(long id, byte[] newBlob);
+    void deleteTabletImage(long id);
 }

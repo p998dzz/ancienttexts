@@ -1,19 +1,19 @@
 package lt.ancienttexts;
 
-import lt.ancienttexts.adapter.db.ImageDbAdapter;
-import lt.ancienttexts.adapter.db.TabletsDbAdapter;
 import lt.ancienttexts.adapter.ImageAdapter;
 import lt.ancienttexts.adapter.TabletAdapter;
+import lt.ancienttexts.adapter.db.ImageDbAdapter;
+import lt.ancienttexts.adapter.db.TabletsDbAdapter;
+import lt.ancienttexts.adapter.harddrive.ImageFromHardDriveAdapter;
 import lt.ancienttexts.service.util.DbEntityConverter;
 import lt.ancienttexts.service.util.EntityConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.support.lob.DefaultLobHandler;
-
-import javax.swing.text.html.parser.Entity;
 
 @Configuration
 public class ApplicationConfiguration {
@@ -35,8 +35,15 @@ public class ApplicationConfiguration {
     }
 
     @Bean
+    @Profile("postgresql")
     public ImageAdapter imageAdapter(NamedParameterJdbcTemplate jdbcTemplate) {
         return new ImageDbAdapter(jdbcTemplate, new DefaultLobHandler());
+    }
+
+    @Bean
+    @Profile("local")
+    public ImageAdapter imageAdapter() {
+        return new ImageFromHardDriveAdapter();
     }
 
     @Bean

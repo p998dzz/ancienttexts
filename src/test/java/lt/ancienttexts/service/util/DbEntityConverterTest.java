@@ -1,9 +1,9 @@
 package lt.ancienttexts.service.util;
 
 import lt.ancienttexts.domain.ListItem;
-import lt.ancienttexts.domain.TabletDetailsResponse;
+import lt.ancienttexts.domain.TabletDetails;
 import lt.ancienttexts.service.entities.ListItemEntity;
-import lt.ancienttexts.service.entities.TextItemEntity;
+import lt.ancienttexts.service.entities.TabletEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -69,7 +69,7 @@ class DbEntityConverterTest {
 
     @Test
     void listItemEntityToTransfer_shouldConvertSingleEntityToTabletDetailsResponse() {
-        TextItemEntity srcEntity = new TextItemEntity();
+        TabletEntity srcEntity = new TabletEntity();
         srcEntity.setId(1L);
         srcEntity.setTabletSource("tablet source");
         srcEntity.setInterpreted(true);
@@ -78,11 +78,11 @@ class DbEntityConverterTest {
         srcEntity.setTitle("title");
         srcEntity.setTranslation("translation");
         srcEntity.setSourceLink("source link");
-        srcEntity.setOriginalPictureId(153542423L);
+        srcEntity.setImageId(153542423L);
         srcEntity.setDateAdded(new Date());
         srcEntity.setDatedAt("2024-10-03");
 
-        TabletDetailsResponse response = converter.listItemEntityToTransfer(srcEntity);
+        TabletDetails response = converter.listItemEntityToTransfer(srcEntity);
 
         assertThat(response.getId()).isEqualTo(srcEntity.getId());
         assertThat(response.getTabletSource()).isEqualTo(srcEntity.getTabletSource());
@@ -92,7 +92,7 @@ class DbEntityConverterTest {
         assertThat(response.getTitle()).isEqualTo(srcEntity.getTitle());
         assertThat(response.getTranslation()).isEqualTo(srcEntity.getTranslation());
         assertThat(response.getSourceLink()).isEqualTo(srcEntity.getSourceLink());
-        assertThat(response.getOriginalPictureId()).isEqualTo(srcEntity.getOriginalPictureId());
+        assertThat(response.getImageId()).isEqualTo(srcEntity.getImageId());
         assertThat(response.getDateAdded()).isEqualTo(dateFormat.format(srcEntity.getDateAdded()));
         assertThat(response.getDatedAt()).isEqualTo(srcEntity.getDatedAt());
     }

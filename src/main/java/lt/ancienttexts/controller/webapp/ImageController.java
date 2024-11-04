@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("image")
-public class PicturesController {
+public class ImageController {
 
     @Autowired
     private ImageService imageService;
@@ -15,7 +15,6 @@ public class PicturesController {
     @GetMapping(value = "/original/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody
     byte[] fetchOriginalImage(@PathVariable Long id){
-        byte[] response = imageService.fetchOriginalImage(id);
-        return response;
+        return imageService.fetchImage(id);
     }
 }

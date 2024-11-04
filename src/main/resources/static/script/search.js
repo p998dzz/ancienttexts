@@ -38,7 +38,7 @@ function recalculatePageCount(){
 
 function showTextDetails(id){
     $.ajax(
-      { url: "text/item/"+id,
+      { url: "tablet/item/"+id,
         success: function(result){
             previousState = $("#content").html();
             $.ajax(
